@@ -17,13 +17,17 @@ function HighScoreTable() {
     return 0;
   }
 
+  function sortNumber(a, b) {
+    return a.s < b.s ? 1 : a.s > b.s ? -1 : 0;
+  }
+
   return (
     <div className="cardContainer">
       <h1 style={{ color: "blue" }}>High Scores per Countries</h1>
       {allCountryScores.sort(sortName).map((country) => (
         <div className="countryCard">
           <h1 style={{ color: "blue" }}>{"HIGH SCORES:" + country.name}</h1>
-          {country.scores.map((score) => (
+          {country.scores.sort(sortNumber).map((score) => (
             <PlayerScore name={score.n} score={score.s} />
           ))}
         </div>
